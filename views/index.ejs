@@ -1,0 +1,35 @@
+<% include ./partials/header.ejs %>
+<div class="container">
+    <div class="jumbotron">
+      <h1>TODO List</h1> 
+    </div>
+    <form method="POST" action="/new">
+    <div class="form-group">
+        <label for="event">Event</label>
+        <input type="text" name="event" class="form-control" id="event">
+    </div>
+    <div class="form-group">
+        <label for="desc">Description</label>
+        <input type="text" name="description" class="form-control" id="desc">
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+</div>
+<br><br>
+<div class="container">
+    <h1>The List is Down here</h1>
+    <br>
+    <% newList.forEach((list)=>{ %>
+        <form action="/delete/<%= list._id %>" class="list-group" method="POST">
+            <div class="panel panel-default">
+                <div class="panel-heading"><%= list.event %></div>
+                <div class="panel-body">Panel Content<%= list.description %></div>
+              </div>
+            <button class="badge">Done</button>
+        </form>
+        <br>
+    <% }) %>
+</div>
+
+
+<% include ./partials/footer.ejs %>
